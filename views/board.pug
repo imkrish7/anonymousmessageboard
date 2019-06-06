@@ -1,0 +1,24 @@
+doctype html
+html
+  head
+    title= title
+    link(rel="stylesheet", href="/stylesheets/board.css")
+    script(src="https://cdn.jsdelivr.net/npm/moment@2.24.0/moment.js")
+    script(src="/javascripts/board.js")
+  body
+    block content
+        .board
+            .head
+                h1  &spades; Boards &spades;
+                
+            .newthread
+                h1 New Board
+                form(action="/threads/add" method="POST" )
+                    input(type="text", name="board" placeholder="board" required)
+                    textarea(name="thread_text", cols="30", rows="10" placeholder="Thread Text" )
+                    div
+                      input(type="password", name="password" placeholder="Enter Password" required)
+                      button(type="submit") Submit
+            .boardlist 
+                ul#list 
+                    

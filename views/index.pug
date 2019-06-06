@@ -1,0 +1,111 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  .main
+      .newthread
+            h1 New Thread
+            form(action="/threads/add" method="POST" )
+                input(type="text", name="board" placeholder="board" required)
+                textarea(name="thread_text", cols="30", rows="10" placeholder="Thread Text" )
+                input(type="password", name="password" placeholder="Enter Password" required)
+                button(type="submit") Submit
+
+      .reportthread
+            h1 Report Thread
+            form(action="/threads/edit" method="PUT" id="report")
+                input(type="text", name="board" placeholder="board" required)
+                input(type="text", name="id" placeholder="id" required)
+                button(type="submit" id="repsub") Submit
+
+      .deletethread
+            h1 Delete Thread
+            form(action="/threads/delete",method="DELETE" id="delthread")
+                input(type="text", name="board" placeholder="board" required)
+                input(type="text", name="id" placeholder="id to delete" required)
+                input(type="password", name="password" placeholder="Enter password" required)
+                button(type="submit" id="delsub") Submit
+
+      .newreply
+            h1 New Reply
+            form(action="/replies/add" method="POST")
+                input(type="text", name="board" placeholder="board" required)
+                input(type="text", name="id" placeholder="Thread id" required)
+                textarea(name="thread_text", cols="30", rows="10" placeholder="Thread Text")
+                input(type="text", name="password" placeholder="Enter password" required)
+                button(type="submit") Submit
+
+      .reportreply
+            h1 Report Reply
+            form(action="/replies/edit",mehtod="PUT" id="replyreport")
+                input(type="text", name="board" placeholder="board" required)
+                input(type="text", name="thread_id" placeholder="thread id" required)
+                input(type="text", name="reply_id" placeholder="thread id to report" required)
+                button(type="submit" id="replyreportsub") Submit
+
+      .deletereplythread
+            h1 Delete Reply
+            form(action="/replies/delete" method="DELETE" id="delreplythread")
+                input(type="text", name="board" placeholder="board" required)
+                input(type="text", name="thread_id" placeholder="Thread id to report" required)
+                input(type="text", name="id" placeholder="id to delete" required)
+                input(type="password", name="password" placeholder="Enter password" required)
+                button(type="submit" id="delreplythreadsub") Submit          
+
+  .usage
+      .userstory
+            h1 User Story
+            ol
+              li Only allow your site to be loading in an iFrame on your own pages.
+              li Do not allow DNS prefetching.
+              li Only allow your site to send the referrer for your own pages.
+              li I can POST a thread to a specific message board by passing form data text and delete_password to /api/threads/{board}.(Recomend res.redirect to board page /b/{board}) Saved will be _id, text, created_on(date&time), bumped_on(date&time, starts same as created_on), reported(boolean), delete_password, & replies(array).
+              li I can POST a reply to a thead on a specific board by passing form data text, delete_password, & thread_id to /api/replies/{board} and it will also update the bumped_on date to the comments date.(Recomend res.redirect to thread page /b/{board}/{thread_id}) In the thread's 'replies' array will be saved _id, text, created_on, delete_password, & reported.
+              li I can GET an array of the most recent 10 bumped threads on the board with only the most recent 3 replies from /api/threads/{board}. The reported and delete_passwords fields will not be sent.
+              li I can GET an entire thread with all it's replies from /api/replies/{board}?thread_id={thread_id}. Also hiding the same fields.
+              li I can delete a thread completely if I send a DELETE request to /api/threads/{board} and pass along the thread_id & delete_password. (Text response will be 'incorrect password' or 'success')
+              li I can delete a post(just changing the text to '[deleted]') if I send a DELETE request to /api/replies/{board} and pass along the thread_id, reply_id, & delete_password. (Text response will be 'incorrect password' or 'success')
+              li I can report a thread and change it's reported value to true by sending a PUT request to /api/threads/{board} and pass along the thread_id. (Text response will be 'success')
+              li I can report a reply and change it's reported value to true by sending a PUT request to /api/replies/{board} and pass along the thread_id & reply_id. (Text response will be 'success')
+              li Complete functional tests that wholely test routes and pass.
+      .urltable
+            a(href="/boards") &#9760; Boards &#9760;
+            table
+                tr
+                  th METHOD
+                  th POST
+                  th PUT
+                  th DELETE
+                tr
+                  td /threads/{add,edit,delete}/{board}
+                  td create thread
+                  td report thread
+                  td delete thread with password
+
+                tr 
+                  td /replies/{add,edit,delete}/{board}
+                  td create reply on thread
+                  td report reply on thread
+                  td change reply to [delete] on thread  
+      .getresponse
+            table
+                tr
+                  th GET
+                  th Single
+                  th Mulitple
+                  th Board
+
+                tr
+                  td Thread
+                  td /boards/board/{boardid}
+                  td /boards/threads/{board}
+                  td /boards/boardlist
+
+                tr 
+                  td Replies
+                  td NA
+                  td /boards/threads/replylist/{thread_id}
+                  td NA                   
+           
+                

@@ -1,0 +1,14 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/thread.css')
+    script(src="/javascripts/operation.js")
+    script(src="/javascripts/threadutility.js")
+    script(src="/javascripts/replylist.js")
+    body
+        block content
+            -var boardName = `<span id='board'> ${ board } </span>`  
+            h1 &#9787; Welcome !{ boardName } thread #{ title } 	&#9787;
+            .replylist 
+                ul#list 

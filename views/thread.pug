@@ -1,0 +1,17 @@
+doctype html
+html
+  head
+    title= title
+    link(rel="stylesheet", href="/stylesheets/thread.css")
+    script(src="/javascripts/operation.js")
+    script(src="/javascripts/threadutility.js")
+    script(src="/javascripts/thread.js")
+  body
+    block content
+        -var titl = `<span id="board">${ title }</span>`
+        
+        h1 &#9924; Welcome to !{ titl } Board  &#9924;
+        #message 
+        .replylist 
+            ul#list 
+                    

@@ -1,0 +1,73 @@
+*
+    box-sizing: border-box
+
+body  
+    color: #6f6868
+    margin: 0
+    padding: 0
+    // padding: 50px
+    font-family: "Lucida Grande", Helvetica, Arial, sans-serif
+
+.board
+    
+    max-width: 700px
+    margin: 0 auto 
+
+    .newthread
+        form 
+            display: flex
+            flex-direction: column
+            width: 100%
+            padding: 30px
+            textarea 
+                background: #dcdcdc
+                color: #000
+            input
+                height: 48px
+                background: #dcdcdc
+                color: #000
+                
+            button,textarea,input
+                margin: 5px
+                border: none
+                padding: 10px
+                font-size: 25px
+                
+            button
+                background: #fff
+                color: #6f6868
+                width: 150px
+                font-weight: bolder
+                transition: 1s
+                box-shadow: inset 0px 0px 20px 1px #848586 
+            button:hover    
+                box-shadow: 0px 1px 4px 0px #909295 
+    
+    .head
+        font-size: 35px
+        font-weight: bolder
+        text-align: center
+
+    
+    .boardlist 
+        ul 
+            list-style: none
+            color: #626161
+            li 
+                background: #ececec
+                border-radius: 5px
+                padding: 30px
+                font-weight: bold
+                pointer: cursor
+                margin: 20px
+                font-size: 25px
+                box-shadow: inset 0px -1px 20px 1px #c6c6c6
+                a 
+                    text-decoration: none
+                    color: #626161
+                    p 
+                        font-style: italic   
+
+            li:hover 
+                background: #ccc 
+                box-shadow: 0px 0px 5px 0px #242424
