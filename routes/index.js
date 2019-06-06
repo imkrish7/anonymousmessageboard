@@ -29,7 +29,7 @@ router.post('/threads/add',(req,res)=>{
       res.send({
         "message": "Sorry! Something went wrong"
       })
-    res.send(data)  
+    res.redirect('/boards/' + data.Board)   
   })
 
 })
